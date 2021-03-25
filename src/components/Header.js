@@ -1,10 +1,16 @@
 import PropTypes from 'prop-types'
+import Button from './Button'
 
 const Header = ({title}) => {
+    const onClick = (e) => {
+        console.log(e)
+    }
     return (
-        <div>
+        <div className='header'>
             <h1 style ={headingStyle}>{title}</h1> 
-        </div>
+            <Button color='green' text='Hello from Green' onClick={onClick} />
+            <Button color='red' text='Hello from Red' onClick={onClick} />
+        </div> 
     )
 }
 Header.defaultProps = {
@@ -19,4 +25,5 @@ Header.propTypes = {
 const headingStyle= {
     color:'blue', backgroundColor:'lightblue'
 }
+
 export default Header
