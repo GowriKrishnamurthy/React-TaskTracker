@@ -1,6 +1,7 @@
 import Header from "./components/Header";
 import Tasks from "./components/Tasks";
 import { useState } from "react";
+import AddTask from "./components/AddTask";
 
 const tasks = [
   {
@@ -26,6 +27,14 @@ const tasks = [
 const App = () => {
   const [tasksList, setTasksList] = useState(tasks);
   
+  // Add task
+  const addTask = (task) => {
+    const id = Math.floor(Math.random()  * 10000) + 1
+    console.log(id);
+    
+    const newTask = { id, ...task}
+    setTasksList([...tasksList, newTask])
+  };
   // Delete task
   const deleteTask = (id) => {
     setTasksList(tasksList.filter((task)=>
@@ -44,6 +53,7 @@ const App = () => {
   return (
     <div className="container">
       <Header title="Task Tracker App" />
+      <AddTask onAdd={addTask}></AddTask>
       {tasksList.length >0 ?
       <Tasks tasks={tasksList} onDelete={deleteTask} onToggle={toggleReminder}></Tasks>
       : 'No tasks to display!'}
