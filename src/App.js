@@ -25,33 +25,28 @@ const tasks = [
 
 const App = () => {
   const [tasksList, setTasksList] = useState(tasks);
-
+  
   // Delete task
   const deleteTask = (id) => {
-    setTasksList(tasksList.filter((task) => task.id !== id));
+    setTasksList(tasksList.filter((task)=>
+    task.id!==id))
   };
 
   // Toggle reminder
   const toggleReminder = (id) => {
-    setTasksList(
-      tasksList.map((task) =>
-        task.id === id ? { ...task, reminder: !task.reminder } : task
-      )
-    );
+    setTasksList(tasksList.map((task)=>
+    task.id === id? 
+    {...task, reminder :!task.reminder}
+    :
+    task))
   };
-
+  
   return (
     <div className="container">
       <Header title="Task Tracker App" />
-      {tasksList.length > 0 ? (
-        <Tasks
-          tasks={tasksList}
-          onDelete={deleteTask}
-          onToggle={toggleReminder}
-        ></Tasks>
-      ) : (
-        "No tasks to display!"
-      )}
+      {tasksList.length >0 ?
+      <Tasks tasks={tasksList} onDelete={deleteTask} onToggle={toggleReminder}></Tasks>
+      : 'No tasks to display!'}
     </div>
   );
 };
