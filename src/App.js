@@ -25,6 +25,7 @@ const tasks = [
 ];
 
 const App = () => {
+  const [showAddTask, setShowAddTask] = useState(false);
   const [tasksList, setTasksList] = useState(tasks);
   
   // Add task
@@ -52,11 +53,14 @@ const App = () => {
   
   return (
     <div className="container">
-      <Header title="Task Tracker App" />
-      <AddTask onAdd={addTask}></AddTask>
+      <Header title="Task Tracker App" 
+      onAdd = {()=>setShowAddTask(!showAddTask)}
+      showAdd = {showAddTask}/>
+      {showAddTask && <AddTask onAdd={addTask} /> }
+      
       {tasksList.length >0 ?
       <Tasks tasks={tasksList} onDelete={deleteTask} onToggle={toggleReminder}></Tasks>
-      : 'No tasks to display!'}
+      : 'No tasks to display!'}      
     </div>
   );
 };
