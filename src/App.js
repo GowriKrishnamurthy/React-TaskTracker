@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
-import Header from "./components/Header";
+import Header from './components/Header'
+import Footer from './components/Footer'
 import Tasks from "./components/Tasks";
 import AddTask from "./components/AddTask";
+import About from './components/About'
 
 const App = () => {
   const [showAddTask, setShowAddTask] = useState(false);
@@ -92,6 +94,7 @@ const App = () => {
       {tasks.length >0 ?
       <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder}></Tasks>
       : 'No tasks to display!'}      
+       <Footer />
     </div>
   );
 };
